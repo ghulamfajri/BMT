@@ -99,7 +99,7 @@
 </nav>
 
 <div class="wrapper wrapper-full-page">
-    <div class="full-page register-page" data-color="azure" data-image="bootstrap/assets/img/full-screen-image-2.jpg">
+    <div class="full-page register-page" data-color="green" data-image="bootstrap/assets/img/full-screen-image-2.jpg">
 
     <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
         <div class="content">

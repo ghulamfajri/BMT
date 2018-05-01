@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="azure" data-image="{{ URL::asset('bootstrap/assets/img/full-screen-image-3.jpg') }}">
+<div class="sidebar" data-color="green" data-image="{{ URL::asset('bootstrap/assets/img/full-screen-image-3.jpg') }}">
     <!--
 
         Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"

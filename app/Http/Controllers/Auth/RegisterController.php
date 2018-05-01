@@ -59,7 +59,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'no_ktp' => 'required|string|digits:4|unique:users',
+            'no_ktp' => 'required|string|digits:16|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }

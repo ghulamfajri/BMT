@@ -33,6 +33,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','permissions.required
         'uses'      => 'AdminController@index'
     ]);
 
+    Route::get('/profile', [
+        'as'        => 'profile',
+        'uses'      => 'AdminController@profile'
+    ]);
+
+    Route::post('/profile', [
+        'as'        => 'edit_profile',
+        'uses'      => 'DatamasterController@edit_profile'
+    ]);
+
+    Route::post('/edit_pass', [
+        'as'        => 'admin.edit_pass',
+        'uses'      => 'AdminController@edit_pass'
+    ]);
+
     Route::group(['prefix' => 'simpanan', 'middleware' => ['auth']], function () {
         Route::get('/pengajuan', [
             'as'        => 'pengajuan_simpanan',

@@ -30,7 +30,7 @@ class CreateDatamasterTable extends Migration
 
         Schema::create('simpanan', function (Blueprint $table) {
             $table->increments('id');
-//            $table->string('id_simpanan')->unique();
+            $table->string('id_simpanan')->unique();
             $table->string('id_rekening');
             $table->string('jenis_simpanan');
             $table->string('nisbah');
@@ -44,7 +44,7 @@ class CreateDatamasterTable extends Migration
 
         Schema::create('deposito', function (Blueprint $table) {
             $table->increments('id');
-//            $table->string('id_deposito')->unique();
+            $table->string('id_deposito')->unique();
             $table->string('id_rekening');
             $table->string('jenis_deposito');
             $table->string('nisbah');
@@ -59,7 +59,7 @@ class CreateDatamasterTable extends Migration
 
         Schema::create('pembiayaan', function (Blueprint $table) {
             $table->increments('id');
-//            $table->string('id_pembiayaan')->unique();
+            $table->string('id_pembiayaan')->unique();
             $table->string('id_rekening');
             $table->string('jenis_pembiayaan');
             $table->string('nisbah');

@@ -161,7 +161,7 @@ class DatamasterController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'no_ktp' => 'required|string|digits:4|unique:users',
+            'no_ktp' => 'required|string|digits:16|unique:users',
             'password' => 'required|string|min:6',
         ]);
 
@@ -184,7 +184,7 @@ class DatamasterController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'no_ktp' => 'required|string|digits:4|unique:users',
+            'no_ktp' => 'required|string|digits:16|unique:users',
         ]);
 
         $inputUser = $this->informationRepository->getAnggota($request->id_);
@@ -206,6 +206,42 @@ class DatamasterController extends Controller
 
         return back();
     }
+
+    public function edit_profile(Request $request){
+        if($request->admin=="admin"){
+            $request->validate([
+                'nama' => 'required|string|max:255',
+                'alamat' => 'required|string|max:255',
+            ]);
+        }
+        else {
+            $request->validate([
+                'nama' => 'required|string|max:255',
+                'alamat' => 'required|string|max:255',
+                'no_ktp' => 'required|string|digits:16|unique:users',
+            ]);
+        }
+
+        $inputUser = $this->informationRepository->getAnggota($request->no_ktp);
+        if (!$inputUser) {
+            $inputUser = New User();
+            $inputUser->no_ktp= $request['no_ktp'];
+            $inputUser->nama= $request['nama'];
+            $inputUser->alamat= $request['alamat'];
+            $inputUser->tipe= $request['tipe'];
+        }
+        else {
+            $inputUser->no_ktp= $request['no_ktp'];
+            $inputUser->nama= $request['nama'];
+            $inputUser->alamat= $request['alamat'];
+        }
+
+        if($inputUser->save())  $status = ["success" ,"Data User berhasil diubah"];
+        else $status = ["danger" ,"Data User berhasil diubah"];
+
+        return back();
+    }
+
 
     public function delete_anggota(Request $request)
     {
@@ -235,6 +271,7 @@ class DatamasterController extends Controller
         }
         return back();
     }
+
 //end of Data master ANGGOTA
 
 //   Data Master SIMPANAN start here
@@ -276,7 +313,7 @@ class DatamasterController extends Controller
             Simpanan::where('id_rekening', ($request->id_))->delete();
         }
         else
-            $status = ["danger" ,"Data Seimpanan gagal dihapus"];
+            $status = ["danger" ,"Data Simpanan gagal dihapus"];
         return back();
     }
 

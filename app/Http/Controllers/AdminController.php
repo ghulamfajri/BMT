@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Rekening;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -48,6 +50,32 @@ class AdminController extends Controller
      */
     public function index(){
         return view('admin.dashboard');
+    }
+
+    public function profile(){
+        $data = $this->informationRepository->getAnggota(Auth::user()->no_ktp);
+        return view('admin.profile',[
+            'data' => $data,
+        ]);
+    }
+
+    public function edit_pass(Request $request) {
+
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $old = $request->password_old;
+        $new = $request->password;
+        if (Hash::check($old, Auth::user()->password)) {
+            $pass = Hash::make($new);
+            User::where('no_ktp', Auth::user()->no_ktp)->update(['password'=> $pass]);
+            $status = ["success" ,"Password Berhasil Diubah"];
+        }
+        else {
+            $status = ["danger", "Password Salah"];
+        }
+        return back();
     }
 
     public function pengajuan_simpanan(){

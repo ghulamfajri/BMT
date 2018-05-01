@@ -88,7 +88,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route('profile')}}">
                                 <i class="pe-7s-tools"></i> Settings
                             </a>
                         </li>
